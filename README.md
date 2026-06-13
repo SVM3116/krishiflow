@@ -200,4 +200,4 @@ Expected result: 3 zones with staggered June, July, and August sowing dates, har
 | Name | Role |
 |---|---|
 | Manoj Kumar V | Full Stack Developer and Backend Integrations |
-| Prajwal V Gowda | AI Specialist and Frontend Developer |
+| Prajwal V Gowda | Full Stack and UI Developer |

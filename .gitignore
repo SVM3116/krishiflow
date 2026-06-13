@@ -15,3 +15,9 @@ build/
 .lovable/
 .gemini/
 .antigravity/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+

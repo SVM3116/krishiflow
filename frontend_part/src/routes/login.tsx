@@ -24,8 +24,12 @@ function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (!supabase) {
+      setErrorMsg("DATABASE ERROR: Supabase connection could not be established. Please make sure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set in your Vercel Environment Variables and that you have redeployed the project.");
+      return;
+    }
     // Redirect if already logged in
-    supabase?.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         if (redirect) {
           nav({ to: redirect as any });
@@ -67,10 +71,15 @@ function LoginPage() {
       return;
     }
 
+    if (!supabase) {
+      setErrorMsg("DATABASE ERROR: Supabase connection could not be established.");
+      return;
+    }
+
     setLoading(true);
     try {
       if (isSignUp) {
-        const { data, error } = await supabase!.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email: trimmedEmail,
           password,
           options: {
@@ -95,7 +104,7 @@ function LoginPage() {
           setSuccessMsg("Registration successful! Please check your email to confirm your account.");
         }
       } else {
-        const { data, error } = await supabase!.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
           email: trimmedEmail,
           password,
         });

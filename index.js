@@ -72,10 +72,15 @@ app.use((err, req, res, next) => {
 });
 
 // Start Express Server
-app.listen(PORT, () => {
-  console.log(`==================================================`);
-  console.log(`KrishiFlow AI Backend server running in ${process.env.NODE_ENV || 'development'} mode`);
-  console.log(`Port: http://localhost:${PORT}`);
-  console.log(`Health endpoint: http://localhost:${PORT}/api/health`);
-  console.log(`==================================================`);
-});
+if (process.env.NODE_ENV !== 'production' && require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`==================================================`);
+    console.log(`KrishiFlow AI Backend server running in ${process.env.NODE_ENV || 'development'} mode`);
+    console.log(`Port: http://localhost:${PORT}`);
+    console.log(`Health endpoint: http://localhost:${PORT}/api/health`);
+    console.log(`==================================================`);
+  });
+}
+
+module.exports = app;
+

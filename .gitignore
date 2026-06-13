@@ -11,10 +11,6 @@ dist/
 build/
 *.log
 
-# Lovable and Antigravity / Gemini files
-.lovable/
-.gemini/
-.antigravity/
 
 # Python cache files
 __pycache__/
